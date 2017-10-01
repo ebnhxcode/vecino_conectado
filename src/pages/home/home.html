@@ -18,13 +18,14 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <h2>Bienvenido a Solnet!</h2>
+
+  <ion-item *ngFor="let item of data">
+    <h2>
+      {{ item.fieldData.Us_Nombre }}
+    </h2>
+
+    <hr>
+  </ion-item>
+
 </ion-content>

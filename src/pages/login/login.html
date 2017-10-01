@@ -1,9 +1,11 @@
 <img src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAI1AAAAJDFlYTExMjA4LTc5YTYtNGY1Ny05ZTg1LTAwMjgyYmRmNTIyYQ.png">
 <h1>Login</h1>
 <ion-item>
-    <ion-label color="primary" stacked>Email</ion-label>
-    <ion-input [(ngModel)]="user.email" type="email" placeholder="Email"></ion-input>
+    <ion-label color="primary" stacked>Usuario</ion-label>
+    <ion-input [(ngModel)]="user.usuario" type="usuario" placeholder="Usuario"></ion-input>
 </ion-item>
+
+
 
 <ion-item>
     <ion-label color="primary" stacked>Password</ion-label>
@@ -11,3 +13,20 @@
 </ion-item>
 <button ion-button (tap)="login()">Login</button>
 <button ion-button (tap)="signIn()" color="secondary">Sign In</button>
+<!-- 
+<ion-content padding>
+	<ion-list>
+
+	  <ion-item *ngFor="let item of data">
+	    <h2>{{item.Us_Apellido_P}}</h2>
+	  </ion-item>
+
+		<ion-item *ngFor="let item of data">
+			<ion-item *ngIf="item.Us_Apellido_P">
+				{{item.Us_Apellido_P}}
+			</ion-item>
+		</ion-item>
+
+	</ion-list>
+</ion-content>
+-->
