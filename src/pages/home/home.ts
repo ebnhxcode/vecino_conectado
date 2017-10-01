@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component, ViewChild, Renderer } from '@angular/core';
+import { NavController, Platform } from 'ionic-angular';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 @Component({
   selector: 'page-home',
@@ -7,8 +8,27 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+	splash = true;
+	tabBarElement: any;
 
+  constructor(public platform: Platform, public renderer:Renderer,public navCtrl: NavController, public splashScreen: SplashScreen) {
+  	//this.tabBarElement = document.querySelector('.tabbar');
+	  
   }
+
+	ngAfterViewInit(){
+
+  		this.platform.ready().then(() => {
+	  		this.splashScreen.hide();
+	  	});
+	}
+  // ionViewDidLoad(){
+  // 	this.tabBarElement.style.display = 'none';
+  // 	setTimeout(() => {
+  // 		this.splash = false;
+  // 		this.tabBarElement.style.display = 'none';
+  // 	}, 5000);
+
+  // }
 
 }
