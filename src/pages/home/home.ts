@@ -20,8 +20,12 @@ export class HomePage {
     public splashScreen: SplashScreen) {
   	//this.tabBarElement = document.querySelector('.tabbar');
     console.log(this.navParams.get('data'));
+    
     this.data = this.navParams.get('data');
+    //console.log(this.navParams.data.fieldData);
   }
+
+
 
 	ngAfterViewInit(){
   		this.platform.ready().then(() => {
