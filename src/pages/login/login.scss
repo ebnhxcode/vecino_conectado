@@ -1,15 +1,32 @@
 page-login{
-	background: white;
+	//background: white;
+
+
+background: #ffffff;
+background: -moz-linear-gradient(top, #ffffff 0%, #f6f6f6 21%, #f6f6f6 35%, #f6f6f6 54%, #afd0e6 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, #ffffff), color-stop(21%, #f6f6f6), color-stop(35%, #f6f6f6), color-stop(54%, #f6f6f6), color-stop(100%, #afd0e6));
+background: -webkit-linear-gradient(top, #ffffff 0%, #f6f6f6 21%, #f6f6f6 35%, #f6f6f6 54%, #afd0e6 100%);
+background: -o-linear-gradient(top, #ffffff 0%, #f6f6f6 21%, #f6f6f6 35%, #f6f6f6 54%, #afd0e6 100%);
+background: -ms-linear-gradient(top, #ffffff 0%, #f6f6f6 21%, #f6f6f6 35%, #f6f6f6 54%, #afd0e6 100%);
+background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 21%, #f6f6f6 35%, #f6f6f6 54%, #afd0e6 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#afd0e6', GradientType=0 );
+
 }
+
+
 h1{
 	text-align: center;
 }
 img{
 	display: block;
 	margin:auto;
-	padding-top: 10%;
+	padding-top: 15%;
+	padding-bottom: 15%;
+	width: 70%;
 }
 
-.button{
-	margin:13%;
+.log{
+	margin:5%;	
 }
+
+

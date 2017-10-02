@@ -38,7 +38,7 @@ export class LoginPage{
 
 	login = ():void=>{
 
-		var url = 'http://local.solnetjson/rest/api/get/usuarios';
+		var url = 'http://solnetjson.grown.cl/rest/api/get/usuarios';
 
 		let loading = this.loadingCtrl.create({
 			content:'Un momento porfavor...'
@@ -53,10 +53,13 @@ export class LoginPage{
 			this.data = data.map( (d) => {
 				self.usernameOk = d.fieldData.Us_usuario == this.user.usuario ? true : false;
 				self.passwordOk = d.fieldData.Us_pass == this.user.password ? true : false;
-				/*
+				
 				console.log(d.fieldData.Us_usuario);
 				console.log(d.fieldData.Us_pass);
-				*/
+				console.log(this.usernameOk);
+				console.log(this.passwordOk);
+				console.log('------------');
+				
 				return d;
 			});
 
@@ -65,7 +68,7 @@ export class LoginPage{
 				this.navCtrl.push(HomePage, {data:this.data});
 			}else{
 				let alert = this.alertCtrl.create({
-					title:'Login',
+					title:'Error!',
 					subTitle:'Usuario y/o contraseña invalido',
 					buttons:['Aceptar'] 					
 				});
