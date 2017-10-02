@@ -1,18 +1,28 @@
-<img src="https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAI1AAAAJDFlYTExMjA4LTc5YTYtNGY1Ny05ZTg1LTAwMjgyYmRmNTIyYQ.png">
-<h1>Login</h1>
-<ion-item>
-    <ion-label color="primary" stacked>Usuario</ion-label>
-    <ion-input [(ngModel)]="user.usuario" type="usuario" placeholder="Usuario"></ion-input>
-</ion-item>
+<img src="../assets/logo.png">
+<hr />
+<div class="log">
+	<ion-list>
+		<ion-item>
+		    <ion-label color="primary" stacked></ion-label>
+		    <ion-input [(ngModel)]="user.usuario" type="usuario" placeholder="Usuario"></ion-input>
+		</ion-item>
 
+	<hr />
 
+		<ion-item>
+		    <ion-label color="primary" stacked></ion-label>
+		    <ion-input [(ngModel)]="user.password" type="password" placeholder="Password"></ion-input>
+		</ion-item>
+		
+	</ion-list>
 
-<ion-item>
-    <ion-label color="primary" stacked>Password</ion-label>
-    <ion-input [(ngModel)]="user.password" type="password" placeholder="Password"></ion-input>
-</ion-item>
-<button ion-button (tap)="login()">Login</button>
-<button ion-button (tap)="signIn()" color="secondary">Sign In</button>
+	<button ion-button (tap)="login()">Iniciar Sesion</button>
+</div>
+
+<div>
+	
+	<!-- <button ion-button (tap)="signIn()" color="secondary">Registrarse</button> -->
+</div>
 <!-- 
 <ion-content padding>
 	<ion-list>

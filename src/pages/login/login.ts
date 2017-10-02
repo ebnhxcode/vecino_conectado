@@ -48,11 +48,11 @@ export class LoginPage{
 		this.http.get(url)
 		.map(res => res.json())
 		.subscribe(data => {	
-			console.log(data);
+			
 
 			var self = this;
 			this.data = data.map( (d) => {
-				console.log(d.fieldData.Us_usuario+'||'+d.fieldData.Us_pass);
+				
 				if (d.fieldData.Us_usuario == this.user.usuario && d.fieldData.Us_pass == this.user.password) {
 					self.usernameOk = true;
 					self.passwordOk = true;
@@ -66,7 +66,7 @@ export class LoginPage{
 			}else{
 				loading.dismiss();
 				let alert = this.alertCtrl.create({
-					title:'Login',
+					title:'Error!',
 					subTitle:'Usuario y/o contraseña invalido',
 					buttons:['Aceptar'] 					
 				});
