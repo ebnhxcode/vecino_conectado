@@ -41,7 +41,7 @@ export class LoginPage{
 		var url = 'http://local.solnetjson/rest/api/get/usuarios';
 
 		let loading = this.loadingCtrl.create({
-			content:'Please wait...'
+			content:'Un momento porfavor...'
 		});
 		loading.present();
 

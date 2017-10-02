@@ -18,14 +18,24 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Bienvenido a Solnet!</h2>
+  <div align="center">
+    <h1>Bienvenido a Solnet!</h1>  
+  </div>
+  
 
   <ion-item *ngFor="let item of data">
+
     <h2>
-      {{ item.fieldData.Us_Nombre }}
+      {{ item.fieldData.Us_Id }} · {{ item.fieldData.Us_Nombre }}
     </h2>
 
-    <hr>
+    <h6 style="float:right;color:gray;">
+      {{ item.fieldData.Us_Nombre }} <br>
+      {{ item.fieldData.Us_Fono }} <br>
+      {{ item.fieldData.Us_rut }} <br>
+      {{ item.fieldData.Us_usuario }} <br>
+    </h6>
+
   </ion-item>
 
 </ion-content>
