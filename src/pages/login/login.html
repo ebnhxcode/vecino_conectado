@@ -1,42 +1,35 @@
-<img src="../assets/logo.png">
+<!-- <img src="../assets/logo.png"> -->
+
+<img src="http://nunoa.solnet.cl/tarjeta_vecino/images/logo.png">
 <hr />
 <div class="log">
-	<ion-list>
-		<ion-item>
-		    <ion-label color="primary" stacked></ion-label>
-		    <ion-input [(ngModel)]="user.usuario" type="usuario" placeholder="Usuario"></ion-input>
-		</ion-item>
-
-	<hr />
-
-		<ion-item>
-		    <ion-label color="primary" stacked></ion-label>
-		    <ion-input [(ngModel)]="user.password" type="password" placeholder="Password"></ion-input>
-		</ion-item>
+	<ion-grid>
+		<ion-row>
+			<ion-list col-12>
+				<ion-item>
+				    <ion-label color="primary" stacked></ion-label>
+				    <ion-input [(ngModel)]="user.usuario" type="usuario" placeholder="Usuario"></ion-input>
+				</ion-item>
+			
 		
-	</ion-list>
+			<hr />
+		
+			
+				<ion-item>
+				    <ion-label color="primary" stacked></ion-label>
+				    <ion-input [(ngModel)]="user.password" type="password" placeholder="Contraseña"></ion-input>
+				</ion-item>
+			</ion-list>
+		</ion-row>
+			
+			<button ion-button color="orange" (tap)="login()">INICIAR SESION</button>
+			<button ion-button color="secondary" >REGISTRARSE</button>
+			<button ion-button color="danger" >Olvido su Contraseña?</button>
+			
+	</ion-grid>	
 
-	<button ion-button (tap)="login()">Iniciar Sesion</button>
-</div>
 
-<div>
+
 	
 	<!-- <button ion-button (tap)="signIn()" color="secondary">Registrarse</button> -->
 </div>
-<!-- 
-<ion-content padding>
-	<ion-list>
-
-	  <ion-item *ngFor="let item of data">
-	    <h2>{{item.Us_Apellido_P}}</h2>
-	  </ion-item>
-
-		<ion-item *ngFor="let item of data">
-			<ion-item *ngIf="item.Us_Apellido_P">
-				{{item.Us_Apellido_P}}
-			</ion-item>
-		</ion-item>
-
-	</ion-list>
-</ion-content>
--->

@@ -8,11 +8,21 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
+import { MenuPage } from '../pages/menu/menu';
+
+import { AdmindashPage } from '../pages/admindash/admindash';
+import { AdminPage } from '../pages/admin/admin';
+import { AdminviewmanagementPage } from '../pages/adminviewmanagement/adminviewmanagement';
+import { AdminviewhodsPage } from '../pages/adminviewhods/adminviewhods';
+import { AdminviewstaffsPage } from '../pages/adminviewstaffs/adminviewstaffs';
+import { AdminviewstudentsPage } from '../pages/adminviewstudents/adminviewstudents';
+import { AdminviewparentsPage } from '../pages/adminviewparents/adminviewparents';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AndroidFullScreen } from '@ionic-native/android-full-screen';
 
-//import { Http, Headers,Response, RequestOptions, HttpModule } from '@angular/http';
 import { HttpModule } from '@angular/http';
 
 var links = [
@@ -27,7 +37,15 @@ var links = [
     ContactPage,
     HomePage,
     TabsPage,
-    LoginPage
+    LoginPage,
+    MenuPage,
+    AdmindashPage,
+    AdminPage,
+    AdminviewmanagementPage,
+    AdminviewhodsPage,
+    AdminviewstaffsPage,
+    AdminviewstudentsPage,
+    AdminviewparentsPage
   ],
   imports: [
     BrowserModule,HttpModule,
@@ -40,11 +58,20 @@ var links = [
     ContactPage,
     HomePage,
     TabsPage,
-    LoginPage
+    LoginPage,
+    MenuPage,
+    AdmindashPage,
+    AdminPage,
+    AdminviewmanagementPage,
+    AdminviewhodsPage,
+    AdminviewstaffsPage,
+    AdminviewstudentsPage,
+    AdminviewparentsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    AndroidFullScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

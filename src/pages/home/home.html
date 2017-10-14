@@ -1,33 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
 <ion-content padding>
-  <div align="center">
-    <h1>Bienvenido a Solnet!</h1> 
-    <h2>{{data.Us_Nombre}}</h2>
-  </div>
-  
-  <ion-list>
-    <ion-item *ngFor="let item of data">
-
-      <h2 item-left>
-        {{ item.fieldData.Us_Id }} - {{ item.fieldData.Us_Nombre }}
-      </h2>
-
-     
-         <h6 style="float:right;color:gray;"> 
-         
-            Nombre: {{ item.fieldData.Us_Nombre }} <br>
-        
-       
-            Fono: {{ item.fieldData.Us_Fono }} <br>
-        
-        
-            Rut: {{ item.fieldData.Us_rut }} <br>
-         
-            Usuario: {{ item.fieldData.Us_usuario }} <br>
-        
-         </h6> 
-        
-      
-    </ion-item>
-  </ion-list>
-
+  <h2>Welcome to Ionic!</h2>
+  <p>
+    This starter project comes with simple tabs-based layout for apps
+    that are going to primarily use a Tabbed UI.
+  </p>
+  <p>
+    Take a look at the <code>src/pages/</code> directory to add or change tabs,
+    update any existing page or create new pages.
+  </p>
 </ion-content>
