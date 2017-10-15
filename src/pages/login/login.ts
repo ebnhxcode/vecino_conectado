@@ -35,20 +35,101 @@ export class LoginPage{
 
 	){}
 
-	ngOnInit(){ /*console.log("arranco el init");*/ }
+	ngOnInit(){ 
+		/*console.log("arranco el init");*/ 
+
+		//var url = 'http://vc.solnet.cl/rest/api/get/usuarios';
+		var url = 'http://local.solnetjson/rest/api/get/usuarios';
+
+		/*
+		let loading = this.loadingCtrl.create({
+			content:'Un momento porfavor...'
+		});
+
+		loading.present();
+		*/
+		
+		var user:any;
+
+		var url_login = 'http://local.solnetjson/rest/api/post';
+
+		let headers = new Headers({
+			'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+			//'Content-Type': 'application/json',
+			//'Accept': 'application/json'
+		});
+
+		let options = new RequestOptions({ headers: headers });
+
+		let json = {
+			'user':this.user.usuario || 'Victor',
+			'pass':this.user.password || 123,
+			'layout':'usuarios',
+		};
+
+		//JSON.stringify(this.user);
+
+		this.http.post(url_login, json)
+			//.map(response => response.json() )
+			.subscribe(
+		  		response => console.log(response),
+		  		() => console.log('Authentication Complete')
+			);
+		console.log('ok');
+		return ;
+
+	}
 
 	signIn = ():void=>{ alert("signIn"); }
 
 	login = ():void=>{
 
-		var url = 'http://vc.solnet.cl/rest/api/get/usuarios';
+		//var url = 'http://vc.solnet.cl/rest/api/get/usuarios';
+		var url = 'http://local.solnetjson/rest/api/post';
 
 		let loading = this.loadingCtrl.create({
 			content:'Un momento porfavor...'
 		});
+
 		loading.present();
 		var user:any;
 
+
+		var url_login = 'http://local.solnetjson/rest/api/post';
+
+		let headers = new Headers({
+			'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+			//'Accept': 'application/json'
+		});
+		let options = new RequestOptions({ headers: headers });
+
+		let body = {
+			'json' : {
+				'user':this.user.usuario,
+				'pass':this.user.password
+			}
+		}
+		//JSON.stringify(this.user);
+
+		this.http.post(url_login, body, options)
+			//.map(response => response.json())
+			.subscribe(
+		  		response => console.log(response),
+		  		() => console.log('Authentication Complete')
+			);
+
+		return ;
+
+/*
+		this.http.post(url_login, body, {headers: headers})
+		.map(res => res.json())
+		.subscribe(data=>{
+			console.log(data);
+		});
+*/
+
+
+		/*
 		this.http.get(url)
 		.map(res => res.json())
 		.subscribe(data => {	
@@ -66,8 +147,9 @@ export class LoginPage{
 
 			if (this.usernameOk == true && this.passwordOk == true) {
 				loading.dismiss();
+
 				//this.navCtrl.push(HomePage, {data:this.data});
-				console.log(user);
+				//console.log(user);
 				this.navCtrl.push(MenuPage, user);
 			}else{
 				let alert = this.alertCtrl.create({
@@ -79,7 +161,8 @@ export class LoginPage{
 				alert.present();
 			}
 
-		});		
+		});
+		*/		
 
 	}
 
