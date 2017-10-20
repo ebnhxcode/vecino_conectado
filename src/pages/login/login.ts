@@ -38,27 +38,30 @@ export class LoginPage{
 	ngOnInit(){ 
 		/*console.log("arranco el init");*/ 
 
-		//var url = 'http://vc.solnet.cl/rest/api/get/usuarios';
-		var url = 'http://local.solnetjson/rest/api/get/usuarios';
-
 		/*
 		let loading = this.loadingCtrl.create({
 			content:'Un momento porfavor...'
 		});
-
 		loading.present();
 		*/
-		
+
 		var user:any;
+		//var url = 'http://local.solnetjson/test/get';
+		//var url = 'http://local.solnetjson/test/all';
+		var url = 'http://local.solnetjson/rest/api/find/usuarios';
 
-		var url_login = 'http://local.solnetjson/rest/api/post';
-
-		let headers = new Headers({
-			'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
-			//'Content-Type': 'application/json',
-			//'Accept': 'application/json'
+		/*
+		this.http.get(url)
+		.do(res => res.json()).
+		subscribe(data => {
+			console.log(data)
 		});
+		*/
 
+		//var url_login = 'http://local.solnetjson/rest/api/post';
+		var url_login = 'http://local.solnetjson/rest/api/find/usuarios';
+
+		let headers = new Headers({'Content-Type': 'application/json'});
 		let options = new RequestOptions({ headers: headers });
 
 		let json = {
@@ -67,10 +70,12 @@ export class LoginPage{
 			'layout':'usuarios',
 		};
 
+		let query = {"query":[{"Us_Usuario":"=Victor","Us_pass":"=123"}]}; 
+
 		//JSON.stringify(this.user);
 
-		this.http.post(url_login, json)
-			//.map(response => response.json() )
+		this.http.post(url, query, options)
+			.map(response => response.json() )
 			.subscribe(
 		  		response => console.log(response),
 		  		() => console.log('Authentication Complete')

@@ -109,28 +109,36 @@ var LoginPage = (function () {
     }
     LoginPage.prototype.ngOnInit = function () {
         /*console.log("arranco el init");*/
-        //var url = 'http://vc.solnet.cl/rest/api/get/usuarios';
-        var url = 'http://local.solnetjson/rest/api/get/usuarios';
         /*
         let loading = this.loadingCtrl.create({
             content:'Un momento porfavor...'
         });
-
         loading.present();
         */
         var user;
-        var url_login = 'http://local.solnetjson/rest/api/post';
-        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({
-            'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+        //var url = 'http://local.solnetjson/test/get';
+        //var url = 'http://local.solnetjson/test/all';
+        var url = 'http://local.solnetjson/rest/api/find/usuarios';
+        /*
+        this.http.get(url)
+        .do(res => res.json()).
+        subscribe(data => {
+            console.log(data)
         });
+        */
+        //var url_login = 'http://local.solnetjson/rest/api/post';
+        var url_login = 'http://local.solnetjson/rest/api/find/usuarios';
+        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
         var options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* RequestOptions */]({ headers: headers });
         var json = {
             'user': this.user.usuario || 'Victor',
             'pass': this.user.password || 123,
             'layout': 'usuarios',
         };
+        var query = { "query": [{ "Us_Usuario": "=Victor", "Us_pass": "=123" }] };
         //JSON.stringify(this.user);
-        this.http.post(url_login, json)
+        this.http.post(url, query, options)
+            .map(function (response) { return response.json(); })
             .subscribe(function (response) { return console.log(response); }, function () { return console.log('Authentication Complete'); });
         console.log('ok');
         return;
@@ -141,12 +149,10 @@ LoginPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-login',template:/*ion-inline-start:"/var/www/html/vecino_conectado/src/pages/login/login.html"*/'<!-- <img src="../assets/logo.png"> -->\n\n\n\n<img src="http://nunoa.solnet.cl/tarjeta_vecino/images/logo.png">\n\n<hr />\n\n<div class="log">\n\n	<ion-grid>\n\n		<ion-row>\n\n			<ion-list col-12>\n\n				<ion-item>\n\n				    <ion-label color="primary" stacked></ion-label>\n\n				    <ion-input [(ngModel)]="user.usuario" type="usuario" placeholder="Usuario"></ion-input>\n\n				</ion-item>\n\n			\n\n		\n\n			<hr />\n\n		\n\n			\n\n				<ion-item>\n\n				    <ion-label color="primary" stacked></ion-label>\n\n				    <ion-input [(ngModel)]="user.password" type="password" placeholder="Contraseña"></ion-input>\n\n				</ion-item>\n\n			</ion-list>\n\n		</ion-row>\n\n			\n\n			<button ion-button color="orange" (tap)="login()">INICIAR SESION</button>\n\n			<button ion-button color="secondary" >REGISTRARSE</button>\n\n			<button ion-button color="danger" >Olvido su Contraseña?</button>\n\n			\n\n	</ion-grid>	\n\n\n\n\n\n\n\n	\n\n	<!-- <button ion-button (tap)="signIn()" color="secondary">Registrarse</button> -->\n\n</div>\n\n'/*ion-inline-end:"/var/www/html/vecino_conectado/src/pages/login/login.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _d || Object])
 ], LoginPage);
 
+var _a, _b, _c, _d;
 //# sourceMappingURL=login.js.map
 
 /***/ }),
