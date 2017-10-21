@@ -48,7 +48,7 @@ export class LoginPage{
 		var user:any;
 		//var url = 'http://local.solnetjson/test/get';
 		//var url = 'http://local.solnetjson/test/all';
-		var url = 'http://local.solnetjson/rest/api/find/usuarios';
+		var url = 'http://local.solnetjson/rest/api/find';
 
 		/*
 		this.http.get(url)
@@ -59,7 +59,7 @@ export class LoginPage{
 		*/
 
 		//var url_login = 'http://local.solnetjson/rest/api/post';
-		var url_login = 'http://local.solnetjson/rest/api/find/usuarios';
+		var url_login = 'http://local.solnetjson/rest/api/find';
 
 		let headers = new Headers({'Content-Type': 'application/json'});
 		let options = new RequestOptions({ headers: headers });
@@ -75,13 +75,14 @@ export class LoginPage{
 		//JSON.stringify(this.user);
 
 		this.http.post(url, query, options)
-			.map(response => response.json() )
+			//.map(response => response.json() )
 			.subscribe(
 		  		response => console.log(response),
 		  		() => console.log('Authentication Complete')
 			);
-		console.log('ok');
-		return ;
+		return ;	
+		//console.log('ok');
+		
 
 	}
 

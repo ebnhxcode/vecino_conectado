@@ -118,7 +118,7 @@ var LoginPage = (function () {
         var user;
         //var url = 'http://local.solnetjson/test/get';
         //var url = 'http://local.solnetjson/test/all';
-        var url = 'http://local.solnetjson/rest/api/find/usuarios';
+        var url = 'http://local.solnetjson/rest/api/find';
         /*
         this.http.get(url)
         .do(res => res.json()).
@@ -127,7 +127,7 @@ var LoginPage = (function () {
         });
         */
         //var url_login = 'http://local.solnetjson/rest/api/post';
-        var url_login = 'http://local.solnetjson/rest/api/find/usuarios';
+        var url_login = 'http://local.solnetjson/rest/api/find';
         var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
         var options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* RequestOptions */]({ headers: headers });
         var json = {
@@ -138,10 +138,9 @@ var LoginPage = (function () {
         var query = { "query": [{ "Us_Usuario": "=Victor", "Us_pass": "=123" }] };
         //JSON.stringify(this.user);
         this.http.post(url, query, options)
-            .map(function (response) { return response.json(); })
             .subscribe(function (response) { return console.log(response); }, function () { return console.log('Authentication Complete'); });
-        console.log('ok');
         return;
+        //console.log('ok');
     };
     return LoginPage;
 }());
