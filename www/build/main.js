@@ -136,8 +136,13 @@ var LoginPage = (function () {
             'layout': 'usuarios',
         };
         var query = { "query": [{ "Us_Usuario": "=Victor", "Us_pass": "=123" }] };
+        var data = {
+            'json': json,
+            'query': query
+        };
         //JSON.stringify(this.user);
-        this.http.post(url, query, options)
+        this.http.post(url, options, data)
+            .map(function (response) { return response.json(); })
             .subscribe(function (response) { return console.log(response); }, function () { return console.log('Authentication Complete'); });
         return;
         //console.log('ok');

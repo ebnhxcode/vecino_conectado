@@ -61,21 +61,25 @@ export class LoginPage{
 		//var url_login = 'http://local.solnetjson/rest/api/post';
 		var url_login = 'http://local.solnetjson/rest/api/find';
 
-		let headers = new Headers({'Content-Type': 'application/json'});
-		let options = new RequestOptions({ headers: headers });
+		var headers = new Headers({'Content-Type': 'application/json'});
+		var options = new RequestOptions({ headers: headers });
 
-		let json = {
+		var json = {
 			'user':this.user.usuario || 'Victor',
 			'pass':this.user.password || 123,
 			'layout':'usuarios',
 		};
 
-		let query = {"query":[{"Us_Usuario":"=Victor","Us_pass":"=123"}]}; 
+		var query = {"query":[{"Us_Usuario":"=Victor","Us_pass":"=123"}]}; 
+		var data = {
+			'json':json,
+			'query':query
+		};
 
 		//JSON.stringify(this.user);
 
-		this.http.post(url, query, options)
-			//.map(response => response.json() )
+		this.http.post(url, options, data)
+			.map(response => response.json() )
 			.subscribe(
 		  		response => console.log(response),
 		  		() => console.log('Authentication Complete')
