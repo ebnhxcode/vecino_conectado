@@ -136,12 +136,12 @@ var LoginPage = (function () {
             'layout': 'usuarios',
         };
         var query = { "query": [{ "Us_Usuario": "=Victor", "Us_pass": "=123" }] };
-        var data = {
+        var body = {
             'json': json,
             'query': query
         };
         //JSON.stringify(this.user);
-        this.http.post(url, options, data)
+        this.http.post(url, options, { 'body': body })
             .map(function (response) { return response.json(); })
             .subscribe(function (response) { return console.log(response); }, function () { return console.log('Authentication Complete'); });
         return;
