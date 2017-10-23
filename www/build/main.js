@@ -49,13 +49,13 @@ var LoginPage = (function () {
         this.alerts = {
             error_login: this.alertCtrl.create({
                 title: 'Error!',
-                subTitle: 'Usuario y/o contraseña invalido',
+                subTitle: 'Usuario y/o contraseña invalida',
                 buttons: ['Aceptar']
             }),
         };
         this.loaders = {
             loading: this.loadingCtrl.create({ content: 'Un momento porfavor...' }),
-            error: this.loadingCtrl.create({ content: 'Ha ocurrido un error, un momento por favor...' }),
+            error: this.loadingCtrl.create({ content: 'Usuario y/o contraseña invalida, un momento por favor...' }),
             success: this.loadingCtrl.create({ content: 'Un momento porfavor...' }),
         };
         this.get_from_layout = function () {
@@ -69,28 +69,36 @@ var LoginPage = (function () {
             var q = { "query": [{ "Us_Usuario": "=" + u, "Us_pass": "=" + p }] };
             var b = { 'layout': l, 'query': q };
             var url_login = _this.url_base + "/rest/api/find";
+            var loading = _this.loaders.loading;
             //Validacion usuario
             if ((u && u != null && u != '') && (p && p != null && p != '') && (l && l != null && l != '')) {
-                _this.loaders.loading.present();
-                _this.http.post(url_login, _this.options, { 'body': b }).map(function (response) { return response.json(); })
-                    .subscribe(function (response) {
-                    var ec = response.errorCode;
-                    switch (ec) {
-                        case '0':
-                            _this.loaders.loading.dismiss();
-                            //this.loaders.loading = null;
-                            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_1__home_home__["a" /* HomePage */], { data: { 'user': u } });
-                            break;
-                        case '401':
-                            _this.loaders.loading.dismiss();
-                            //this.loaders.loading = null;
-                            _this.alerts.error_login.present();
-                            break;
-                        default:
-                            console.log(ec);
-                            break;
-                    }
-                }, function () { });
+                loading.present().then(function () {
+                    _this.http.post(url_login, _this.options, { 'body': b }).map(function (response) { return response.json(); })
+                        .subscribe(function (response) {
+                        var ec = response.errorCode;
+                        switch (ec) {
+                            case '0':
+                                //this.loaders.loading = null;
+                                _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_1__home_home__["a" /* HomePage */], { data: { 'user': u } });
+                                break;
+                            case '401':
+                                //this.loaders.loading = null;
+                                _this.loaders.error.present();
+                                setTimeout(function () {
+                                    _this.loaders.error.dismiss();
+                                    //this.navCtrl.push(LoginPage);
+                                    window.location.reload(true);
+                                }, 2500);
+                                break;
+                            default:
+                                console.log(ec);
+                                break;
+                        }
+                        loading.dismiss();
+                    }, function () { });
+                });
+                //return window.location.reload(true);
+                //return window.location.reload();
             }
             else {
                 //Redireccionar al login y quitar alerta
