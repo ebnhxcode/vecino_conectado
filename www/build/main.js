@@ -47,6 +47,13 @@ var LoginPage = (function () {
         this.headers = new __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
         this.options = new __WEBPACK_IMPORTED_MODULE_3__angular_http__["d" /* RequestOptions */]({ headers: this.headers });
         this.alerts = {
+            error_login: this.alertCtrl.create({
+                title: 'Error!',
+                subTitle: 'Usuario y/o contraseña invalido',
+                buttons: ['Aceptar']
+            }),
+        };
+        this.loaders = {
             loading: this.loadingCtrl.create({ content: 'Un momento porfavor...' }),
             error: this.loadingCtrl.create({ content: 'Ha ocurrido un error, un momento por favor...' }),
             success: this.loadingCtrl.create({ content: 'Un momento porfavor...' }),
@@ -64,31 +71,33 @@ var LoginPage = (function () {
             var url_login = _this.url_base + "/rest/api/find";
             //Validacion usuario
             if ((u && u != null && u != '') && (p && p != null && p != '') && (l && l != null && l != '')) {
+                _this.loaders.loading.present();
                 _this.http.post(url_login, _this.options, { 'body': b }).map(function (response) { return response.json(); })
                     .subscribe(function (response) {
                     var ec = response.errorCode;
                     switch (ec) {
                         case '0':
-                            _this.alerts.loading.dismiss();
+                            _this.loaders.loading.dismiss();
+                            //this.loaders.loading = null;
                             _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_1__home_home__["a" /* HomePage */], { data: { 'user': u } });
                             break;
                         case '401':
-                            return console.log(resonse);
+                            _this.loaders.loading.dismiss();
+                            //this.loaders.loading = null;
+                            _this.alerts.error_login.present();
                             break;
                         default:
-                            return console.log(ec);
+                            console.log(ec);
+                            break;
                     }
                 }, function () { });
-                return;
             }
             else {
-                //this.alerts.error.present();
                 //Redireccionar al login y quitar alerta
             }
         };
         this.signIn = function () { alert("signIn"); };
         this.login = function () {
-            _this.alerts.loading.present();
             return _this.find_in_layout();
             /*
             //var url = 'http://vc.solnet.cl/rest/api/get/usuarios';

@@ -30,6 +30,13 @@ export class LoginPage{
 	headers = new Headers({'Content-Type': 'application/json'});
 	options = new RequestOptions({ headers: this.headers });
 	alerts = {
+		error_login:this.alertCtrl.create({
+			title:'Error!',
+			subTitle:'Usuario y/o contraseña invalido',
+			buttons:['Aceptar'] 					
+		}),
+	};
+	loaders = {
 		loading:this.loadingCtrl.create({content:'Un momento porfavor...'}),
 		error:this.loadingCtrl.create({content:'Ha ocurrido un error, un momento por favor...'}),
 		success:this.loadingCtrl.create({content:'Un momento porfavor...'}),
@@ -64,31 +71,31 @@ export class LoginPage{
 
 		//Validacion usuario
 		if ( (u&&u!=null&&u!='')&&(p&&p!=null&&p!='')&&(l&&l!=null&&l!='')) {
-
+			this.loaders.loading.present();
 			this.http.post(url_login, this.options, {'body':b}).map(response => response.json())
 				.subscribe(
 		  			response => {
 		  				var ec = response.errorCode;
 		  				switch (ec) {
 		  					case '0':
-								this.alerts.loading.dismiss();
+		  						this.loaders.loading.dismiss();
+		  						//this.loaders.loading = null;
 								this.navCtrl.push(HomePage, {data:{'user':u} });
 			  					break;
-
 		  					case '401':
-								return console.log(resonse);
-			  					break;		  					
-
+								this.loaders.loading.dismiss();
+								//this.loaders.loading = null;
+								this.alerts.error_login.present();
+								break;
 			  				default:
-			  					return console.log(ec);
+			  					console.log(ec);
+			  					break;
 
 			  			}
 			  		},
 					() => {/*console.log('Authentication Complete')*/}
 				);
-			return ;	
 		}else{
-			//this.alerts.error.present();
 			//Redireccionar al login y quitar alerta
 		}
 	};
@@ -115,7 +122,6 @@ export class LoginPage{
 	signIn = ():void=>{ alert("signIn"); }
 
 	login = ():void=>{
-		this.alerts.loading.present();
 		return this.find_in_layout();
 		/*
 		//var url = 'http://vc.solnet.cl/rest/api/get/usuarios';
