@@ -37,7 +37,7 @@ var LoginPage = (function () {
         this.navCtrl = navCtrl;
         this.http = http;
         this.self = this;
-        this.user = { "usuario": "", "password": "" };
+        this.user = { "usuario": "", "password": "", "layout": "usuarios" };
         this.data = new Array();
         this.usernameOk = false;
         this.passwordOk = false;
@@ -49,18 +49,21 @@ var LoginPage = (function () {
             error: this.loadingCtrl.create({ content: 'Ha ocurrido un error, un momento por favor...' }),
             success: this.loadingCtrl.create({ content: 'Un momento porfavor...' }),
         };
-        this.get = function () {
+        this.get_from_layout = function () {
         };
-        this.find = function () {
+        this.all_from_layout = function () {
+        };
+        this.find_in_layout = function () {
             var u = _this.user.usuario;
             var p = _this.user.password;
+            var l = _this.user.layout;
             //Validacion usuario
-            if ((u && u != null && u != '') && (p && p != null && p != '') || true) {
+            if ((u && u != null && u != '') && (p && p != null && p != '') && (l && l != null && l != '') || true) {
                 var url_login = _this.url_base + "/rest/api/find";
                 var json = {
-                    'user': u || 'Victor',
-                    'pass': p || 123,
-                    'layout': 'usuarios',
+                    'user': u,
+                    'pass': p,
+                    'layout': l,
                 };
                 var query = { "query": [{ "Us_Usuario": "=Victor", "Us_pass": "=123" }] };
                 var body = {
@@ -146,11 +149,11 @@ var LoginPage = (function () {
     }
     LoginPage.prototype.ngOnInit = function () {
         /*console.log("arranco el init");*/
-        return this.find();
+        return 1;
+        //return this.find_in_layout();
         var user;
         //var url = 'http://local.solnetjson/test/get';
         //var url = 'http://local.solnetjson/test/all';
-        var url = 'http://local.solnetjson/rest/api/find';
         /*
         this.http.get(url)
         .do(res => res.json()).
@@ -158,26 +161,6 @@ var LoginPage = (function () {
             console.log(data)
         });
         */
-        //var url_login = 'http://local.solnetjson/rest/api/post';
-        var url_login = 'http://local.solnetjson/rest/api/find';
-        var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
-        var options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* RequestOptions */]({ headers: headers });
-        var json = {
-            'user': this.user.usuario || 'Victor',
-            'pass': this.user.password || 123,
-            'layout': 'usuarios',
-        };
-        var query = { "query": [{ "Us_Usuario": "=Victor", "Us_pass": "=123" }] };
-        var body = {
-            'json': json,
-            'query': query
-        };
-        //JSON.stringify(this.user);
-        this.http.post(url, options, { 'body': body })
-            .map(function (response) { return response.json(); })
-            .subscribe(function (response) { return console.log(response); }, function () { return console.log('Authentication Complete'); });
-        return;
-        //console.log('ok');
     };
     return LoginPage;
 }());

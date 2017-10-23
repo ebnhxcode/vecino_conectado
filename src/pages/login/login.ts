@@ -22,7 +22,7 @@ import 'rxjs/add/operator/catch';
 })
 export class LoginPage{
 	self = this;
-	user = {"usuario":"", "password":""};
+	user = {"usuario":"", "password":"", "layout":"usuarios"};
 	data = new Array<Object>();
 	usernameOk = false;
 	passwordOk = false;
@@ -42,24 +42,30 @@ export class LoginPage{
 		private http: Http,
 	){}
 
-	get = ():void=>{
+	get_from_layout = ():void=>{
 
 
-		
+
 	};
 
-	find = ():void=>{
+	all_from_layout = ():void=>{
+
+
+
+	};
+
+	find_in_layout = ():void=>{
 		var u = this.user.usuario;
 		var p = this.user.password;
+		var l = this.user.layout;
 
 		//Validacion usuario
-		if ( (u&&u!=null&&u!='')&&(p&&p!=null&&p!='') || true) {
-
+		if ( (u&&u!=null&&u!='')&&(p&&p!=null&&p!='')&&(l&&l!=null&&l!='') || true) {
 			var url_login = `${this.url_base}/rest/api/find`;
 			var json = {
-				'user': u || 'Victor',
-				'pass': p || 123,
-				'layout':'usuarios',
+				'user': u,
+				'pass': p,
+				'layout': l,
 			};
 			var query = {"query":[{"Us_Usuario":"=Victor","Us_pass":"=123"}]}; 
 			var body = {
@@ -82,14 +88,12 @@ export class LoginPage{
 
 	ngOnInit(){ 
 		/*console.log("arranco el init");*/ 
-
-		return this.find();
-
+		return 1;
+		//return this.find_in_layout();
 
 		var user:any;
 		//var url = 'http://local.solnetjson/test/get';
 		//var url = 'http://local.solnetjson/test/all';
-		var url = 'http://local.solnetjson/rest/api/find';
 
 		/*
 		this.http.get(url)
@@ -98,34 +102,6 @@ export class LoginPage{
 			console.log(data)
 		});
 		*/
-
-		//var url_login = 'http://local.solnetjson/rest/api/post';
-		var url_login = 'http://local.solnetjson/rest/api/find';
-
-		var headers = new Headers({'Content-Type': 'application/json'});
-		var options = new RequestOptions({ headers: headers });
-
-		var json = {
-			'user':this.user.usuario || 'Victor',
-			'pass':this.user.password || 123,
-			'layout':'usuarios',
-		};
-		var query = {"query":[{"Us_Usuario":"=Victor","Us_pass":"=123"}]}; 
-		var body = {
-			'json':json,
-			'query':query
-		};
-		//JSON.stringify(this.user);
-		this.http.post(url, options, {'body':body})
-			.map(response => response.json() )
-			.subscribe(
-		  		response => console.log(response),
-		  		() => console.log('Authentication Complete')
-			);
-		return ;	
-		//console.log('ok');
-		
-
 	}
 
 	signIn = ():void=>{ alert("signIn"); }
