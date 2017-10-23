@@ -6,14 +6,15 @@ webpackJsonp([0],{
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_do__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_do___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_do__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__home_home__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_do__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_do___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_do__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_catch__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_catch__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -23,6 +24,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -42,8 +44,8 @@ var LoginPage = (function () {
         this.usernameOk = false;
         this.passwordOk = false;
         this.url_base = 'http://local.solnetjson/';
-        this.headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
-        this.options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* RequestOptions */]({ headers: this.headers });
+        this.headers = new __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
+        this.options = new __WEBPACK_IMPORTED_MODULE_3__angular_http__["d" /* RequestOptions */]({ headers: this.headers });
         this.alerts = {
             loading: this.loadingCtrl.create({ content: 'Un momento porfavor...' }),
             error: this.loadingCtrl.create({ content: 'Ha ocurrido un error, un momento por favor...' }),
@@ -57,53 +59,75 @@ var LoginPage = (function () {
             var u = _this.user.usuario;
             var p = _this.user.password;
             var l = _this.user.layout;
+            var q = { "query": [{ "Us_Usuario": "=" + u, "Us_pass": "=" + p }] };
+            var b = { 'layout': l, 'query': q };
+            var url_login = _this.url_base + "/rest/api/find";
             //Validacion usuario
-            if ((u && u != null && u != '') && (p && p != null && p != '') && (l && l != null && l != '') || true) {
-                var url_login = _this.url_base + "/rest/api/find";
-                var json = {
-                    'user': u,
-                    'pass': p,
-                    'layout': l,
-                };
-                var query = { "query": [{ "Us_Usuario": "=Victor", "Us_pass": "=123" }] };
-                var body = {
-                    'json': json,
-                    'query': query
-                };
-                _this.http.post(url_login, _this.options, { 'body': body })
-                    .map(function (response) { return response.json(); })
-                    .subscribe(function (response) { return console.log(response); }, function () { return console.log('Authentication Complete'); });
+            if ((u && u != null && u != '') && (p && p != null && p != '') && (l && l != null && l != '')) {
+                _this.http.post(url_login, _this.options, { 'body': b }).map(function (response) { return response.json(); })
+                    .subscribe(function (response) {
+                    var ec = response.errorCode;
+                    switch (ec) {
+                        case '0':
+                            _this.alerts.loading.dismiss();
+                            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_1__home_home__["a" /* HomePage */], { data: { 'user': u } });
+                            break;
+                        case '401':
+                            return console.log(resonse);
+                            break;
+                        default:
+                            return console.log(ec);
+                    }
+                }, function () { });
                 return;
             }
             else {
-                _this.alerts.error.present();
+                //this.alerts.error.present();
                 //Redireccionar al login y quitar alerta
             }
         };
         this.signIn = function () { alert("signIn"); };
         this.login = function () {
+            _this.alerts.loading.present();
+            return _this.find_in_layout();
+            /*
             //var url = 'http://vc.solnet.cl/rest/api/get/usuarios';
             var url = 'http://local.solnetjson/rest/api/post';
-            var loading = _this.loadingCtrl.create({
-                content: 'Un momento porfavor...'
+    
+            let loading = this.loadingCtrl.create({
+                content:'Un momento porfavor...'
             });
+    
             loading.present();
-            var user;
+            var user:any;
+    
+    
             var url_login = 'http://local.solnetjson/rest/api/post';
-            var headers = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Headers */]({
+    
+            let headers = new Headers({
                 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+                //'Accept': 'application/json'
             });
-            var options = new __WEBPACK_IMPORTED_MODULE_2__angular_http__["d" /* RequestOptions */]({ headers: headers });
-            var body = {
-                'json': {
-                    'user': _this.user.usuario,
-                    'pass': _this.user.password
+            let options = new RequestOptions({ headers: headers });
+    
+            let body = {
+                'json' : {
+                    'user':this.user.usuario,
+                    'pass':this.user.password
                 }
-            };
+            }
             //JSON.stringify(this.user);
-            _this.http.post(url_login, body, options)
-                .subscribe(function (response) { return console.log(response); }, function () { return console.log('Authentication Complete'); });
-            return;
+    
+            this.http.post(url_login, body, options)
+                //.map(response => response.json())
+                .subscribe(
+                    response => console.log(response),
+                    () => console.log('Authentication Complete')
+                );
+    
+            return ;
+    
+            */
             /*
                     this.http.post(url_login, body, {headers: headers})
                     .map(res => res.json())
@@ -149,7 +173,7 @@ var LoginPage = (function () {
     }
     LoginPage.prototype.ngOnInit = function () {
         /*console.log("arranco el init");*/
-        return 1;
+        //return 1;
         //return this.find_in_layout();
         var user;
         //var url = 'http://local.solnetjson/test/get';
@@ -168,7 +192,7 @@ LoginPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-login',template:/*ion-inline-start:"/var/www/html/vecino_conectado/src/pages/login/login.html"*/'<!-- <img src="../assets/logo.png"> -->\n\n\n\n<img src="http://nunoa.solnet.cl/tarjeta_vecino/images/logo.png">\n\n<hr />\n\n<div class="log">\n\n	<ion-grid>\n\n		<ion-row>\n\n			<ion-list col-12>\n\n				<ion-item>\n\n				    <ion-label color="primary" stacked></ion-label>\n\n				    <ion-input [(ngModel)]="user.usuario" type="usuario" placeholder="Usuario"></ion-input>\n\n				</ion-item>\n\n			\n\n		\n\n			<hr />\n\n		\n\n			\n\n				<ion-item>\n\n				    <ion-label color="primary" stacked></ion-label>\n\n				    <ion-input [(ngModel)]="user.password" type="password" placeholder="Contraseña"></ion-input>\n\n				</ion-item>\n\n			</ion-list>\n\n		</ion-row>\n\n			\n\n			<button ion-button color="orange" (tap)="login()">INICIAR SESION</button>\n\n			<button ion-button color="secondary" >REGISTRARSE</button>\n\n			<button ion-button color="danger" >Olvido su Contraseña?</button>\n\n			\n\n	</ion-grid>	\n\n\n\n\n\n\n\n	\n\n	<!-- <button ion-button (tap)="signIn()" color="secondary">Registrarse</button> -->\n\n</div>\n\n'/*ion-inline-end:"/var/www/html/vecino_conectado/src/pages/login/login.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* AlertController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* LoadingController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_http__["b" /* Http */]) === "function" && _d || Object])
 ], LoginPage);
 
 var _a, _b, _c, _d;

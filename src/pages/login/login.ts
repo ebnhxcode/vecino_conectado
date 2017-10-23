@@ -58,29 +58,37 @@ export class LoginPage{
 		var u = this.user.usuario;
 		var p = this.user.password;
 		var l = this.user.layout;
+		var q = {"query":[{"Us_Usuario":`=${u}`,"Us_pass":`=${p}`}]}; 
+		var b = { 'layout':l, 'query':q };
+		var url_login = `${this.url_base}/rest/api/find`;
 
 		//Validacion usuario
-		if ( (u&&u!=null&&u!='')&&(p&&p!=null&&p!='')&&(l&&l!=null&&l!='') || true) {
-			var url_login = `${this.url_base}/rest/api/find`;
-			var json = {
-				'user': u,
-				'pass': p,
-				'layout': l,
-			};
-			var query = {"query":[{"Us_Usuario":"=Victor","Us_pass":"=123"}]}; 
-			var body = {
-				'json':json,
-				'query':query
-			};
-			this.http.post(url_login, this.options, {'body':body})
-			.map(response => response.json() )
-			.subscribe(
-		  		response => console.log(response),
-		  		() => console.log('Authentication Complete')
-			);
+		if ( (u&&u!=null&&u!='')&&(p&&p!=null&&p!='')&&(l&&l!=null&&l!='')) {
+
+			this.http.post(url_login, this.options, {'body':b}).map(response => response.json())
+				.subscribe(
+		  			response => {
+		  				var ec = response.errorCode;
+		  				switch (ec) {
+		  					case '0':
+								this.alerts.loading.dismiss();
+								this.navCtrl.push(HomePage, {data:{'user':u} });
+			  					break;
+
+		  					case '401':
+								return console.log(resonse);
+			  					break;		  					
+
+			  				default:
+			  					return console.log(ec);
+
+			  			}
+			  		},
+					() => {/*console.log('Authentication Complete')*/}
+				);
 			return ;	
 		}else{
-			this.alerts.error.present();
+			//this.alerts.error.present();
 			//Redireccionar al login y quitar alerta
 		}
 	};
@@ -88,7 +96,7 @@ export class LoginPage{
 
 	ngOnInit(){ 
 		/*console.log("arranco el init");*/ 
-		return 1;
+		//return 1;
 		//return this.find_in_layout();
 
 		var user:any;
@@ -107,7 +115,9 @@ export class LoginPage{
 	signIn = ():void=>{ alert("signIn"); }
 
 	login = ():void=>{
-
+		this.alerts.loading.present();
+		return this.find_in_layout();
+		/*
 		//var url = 'http://vc.solnet.cl/rest/api/get/usuarios';
 		var url = 'http://local.solnetjson/rest/api/post';
 
@@ -143,6 +153,8 @@ export class LoginPage{
 			);
 
 		return ;
+
+		*/
 
 /*
 		this.http.post(url_login, body, {headers: headers})
