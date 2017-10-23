@@ -21,29 +21,70 @@ import 'rxjs/add/operator/catch';
 	templateUrl: 'login.html',
 })
 export class LoginPage{
-
+	self = this;
 	user = {"usuario":"", "password":""};
 	data = new Array<Object>();
 	usernameOk = false;
 	passwordOk = false;
-
+	url_base = 'http://local.solnetjson/';
+	headers = new Headers({'Content-Type': 'application/json'});
+	options = new RequestOptions({ headers: this.headers });
+	alerts = {
+		loading:this.loadingCtrl.create({content:'Un momento porfavor...'}),
+		error:this.loadingCtrl.create({content:'Ha ocurrido un error, un momento por favor...'}),
+		success:this.loadingCtrl.create({content:'Un momento porfavor...'}),
+	};
+	
 	constructor(
 		private alertCtrl: AlertController, 
 		public loadingCtrl: LoadingController,
 		public navCtrl: NavController,
 		private http: Http,
-
 	){}
+
+	get = ():void=>{
+
+
+		
+	};
+
+	find = ():void=>{
+		var u = this.user.usuario;
+		var p = this.user.password;
+
+		//Validacion usuario
+		if ( (u&&u!=null&&u!='')&&(p&&p!=null&&p!='') || true) {
+
+			var url_login = `${this.url_base}/rest/api/find`;
+			var json = {
+				'user': u || 'Victor',
+				'pass': p || 123,
+				'layout':'usuarios',
+			};
+			var query = {"query":[{"Us_Usuario":"=Victor","Us_pass":"=123"}]}; 
+			var body = {
+				'json':json,
+				'query':query
+			};
+			this.http.post(url_login, this.options, {'body':body})
+			.map(response => response.json() )
+			.subscribe(
+		  		response => console.log(response),
+		  		() => console.log('Authentication Complete')
+			);
+			return ;	
+		}else{
+			this.alerts.error.present();
+			//Redireccionar al login y quitar alerta
+		}
+	};
+
 
 	ngOnInit(){ 
 		/*console.log("arranco el init");*/ 
 
-		/*
-		let loading = this.loadingCtrl.create({
-			content:'Un momento porfavor...'
-		});
-		loading.present();
-		*/
+		return this.find();
+
 
 		var user:any;
 		//var url = 'http://local.solnetjson/test/get';
