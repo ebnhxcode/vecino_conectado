@@ -1,5 +1,17 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { TabsPage } from '../tabs/tabs'
+import { MenuPage } from '../menu/menu'
+import { AndroidFullScreen } from '@ionic-native/android-full-screen';
+import { 
+	AlertController, 
+	LoadingController,
+	NavController
+} from 'ionic-angular';
+import { Http, Headers, RequestOptions } from '@angular/http';
+
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 @Component({
   selector: 'page-home',
@@ -7,8 +19,19 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+   constructor(
+		private alertCtrl: AlertController, 
+		public loadingCtrl: LoadingController,
+		public navCtrl: NavController,
+		private http: Http,
+  	) {}
 
-  }
+
+
+
+
+
+
+
 
 }

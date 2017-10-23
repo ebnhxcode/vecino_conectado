@@ -83,16 +83,14 @@ export class LoginPage{
 									this.navCtrl.push(HomePage, {data:{'user':u} });
 				  					break;
 			  					case '401':
-									//this.loaders.loading = null;
+				  				default:
+									//console.log(ec); //this.loaders.loading = null;
 									this.loaders.error.present();
 									setTimeout(()=>{
 										this.loaders.error.dismiss();
 										//this.navCtrl.push(LoginPage);
 										window.location.reload(true);
 									}, 2500);
-									break;
-				  				default:
-				  					console.log(ec);
 				  					break;
 
 				  			}
@@ -100,12 +98,7 @@ export class LoginPage{
 				  		},
 						() => {/*console.log('Authentication Complete')*/}
 					);
-
 			});
-			//return window.location.reload(true);
-			//return window.location.reload();
-
-
 		}else{
 			//Redireccionar al login y quitar alerta
 		}
