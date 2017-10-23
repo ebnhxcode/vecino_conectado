@@ -18,6 +18,8 @@ import 'rxjs/add/operator/catch';
   templateUrl: 'home.html'
 })
 export class HomePage {
+	self = this;
+	users = [];
 
    constructor(
 		private alertCtrl: AlertController, 
@@ -26,11 +28,33 @@ export class HomePage {
 		private http: Http,
   	) {}
 
+	ngOnInit(){ 
+		this.get_from_layout();		
 
 
 
 
+	}
 
+
+	get_from_layout = ():void=>{
+		var url = 'http://local.solnetjson/rest/api/all/usuarios';
+		this.http.get(url)
+		.do(res => res.json()).
+		subscribe(data => {
+			//console.log(JSON.parse(data._body));
+			this.users = JSON.parse(data._body).data;
+
+		});
+		
+
+	};
+
+	all_from_layout = ():void=>{
+
+
+
+	};
 
 
 

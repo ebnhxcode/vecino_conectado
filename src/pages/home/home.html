@@ -5,13 +5,55 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+
+
+  <ion-list>
+    <ion-item *ngFor="let user of users">
+      <ion-thumbnail item-left>
+        <img src="http://www.grc-india.com/smart-cities/assets/user.png">
+      </ion-thumbnail>
+      <p style="float:right;"><ion-icon name="md-create"></ion-icon></p>
+      <p>Nombre: {{user.fieldData.Us_Nombre}}</p>
+      <p>Apellido: {{user.fieldData.Us_Apellido_P}}</p>
+      <p>Email: {{user.fieldData.Us_Email}}</p>
+      <p>Usuario: {{user.fieldData.Us_usuario}}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+  <!-- 
+
+  <div padding>
+    <ion-segment [(ngModel)]="pet">
+      <ion-segment-button value="kittens">
+        Lista
+      </ion-segment-button>
+      <ion-segment-button value="puppies">
+        Formularios
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="pet">
+    <ion-list *ngSwitchCase="'puppies'">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="http://www.grc-india.com/smart-cities/assets/user.png">
+        </ion-thumbnail>
+         <h2>Formularios</h2>
+      </ion-item>
+      ...
+    </ion-list>
+    
+    <ion-list *ngSwitchCase="'kittens'">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="http://www.grc-india.com/smart-cities/assets/user.png">
+        </ion-thumbnail>
+        <h2>Lista</h2>
+      </ion-item>
+      ...
+    </ion-list>
+    
+  </div>
+  -->
