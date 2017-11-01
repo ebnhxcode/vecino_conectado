@@ -49,18 +49,6 @@ export class LoginPage{
 		private http: Http,
 	){}
 
-	get_from_layout = ():void=>{
-
-
-
-	};
-
-	all_from_layout = ():void=>{
-
-
-
-	};
-
 	find_in_layout = ():void=>{
 		var u = this.user.usuario;
 		var p = this.user.password;

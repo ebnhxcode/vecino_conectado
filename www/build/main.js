@@ -58,10 +58,6 @@ var LoginPage = (function () {
             error: this.loadingCtrl.create({ content: 'Usuario y/o contraseña invalida, un momento por favor...' }),
             success: this.loadingCtrl.create({ content: 'Un momento porfavor...' }),
         };
-        this.get_from_layout = function () {
-        };
-        this.all_from_layout = function () {
-        };
         this.find_in_layout = function () {
             var u = _this.user.usuario;
             var p = _this.user.password;
@@ -245,21 +241,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var HomePage = (function () {
-    function HomePage(alertCtrl, loadingCtrl, navCtrl, http) {
+    function HomePage(alertCtrl, loadingCtrl, navCtrl, http, navParams) {
         var _this = this;
         this.alertCtrl = alertCtrl;
         this.loadingCtrl = loadingCtrl;
         this.navCtrl = navCtrl;
         this.http = http;
+        this.navParams = navParams;
         this.self = this;
         this.users = [];
         this.get_from_layout = function () {
+            //console.log();
             var url = 'http://local.solnetjson/rest/api/all/usuarios';
             _this.http.get(url)
                 .do(function (res) { return res.json(); }).
                 subscribe(function (data) {
+                console.log(data);
                 //console.log(JSON.parse(data._body));
-                _this.users = JSON.parse(data._body).data;
+                //this.users = JSON.parse(data._body).data;
             });
         };
         this.all_from_layout = function () {
@@ -274,10 +273,13 @@ HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-home',template:/*ion-inline-start:"/var/www/html/vecino_conectado/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n\n  <ion-list>\n    <ion-item *ngFor="let user of users">\n      <ion-thumbnail item-left>\n        <img src="http://www.grc-india.com/smart-cities/assets/user.png">\n      </ion-thumbnail>\n      <p style="float:right;"><ion-icon name="md-create"></ion-icon></p>\n      <p>Nombre: {{user.fieldData.Us_Nombre}}</p>\n      <p>Apellido: {{user.fieldData.Us_Apellido_P}}</p>\n      <p>Email: {{user.fieldData.Us_Email}}</p>\n      <p>Usuario: {{user.fieldData.Us_usuario}}</p>\n    </ion-item>\n  </ion-list>\n</ion-content>\n\n  <!-- \n\n  <div padding>\n    <ion-segment [(ngModel)]="pet">\n      <ion-segment-button value="kittens">\n        Lista\n      </ion-segment-button>\n      <ion-segment-button value="puppies">\n        Formularios\n      </ion-segment-button>\n    </ion-segment>\n  </div>\n\n  <div [ngSwitch]="pet">\n    <ion-list *ngSwitchCase="\'puppies\'">\n      <ion-item>\n        <ion-thumbnail item-start>\n          <img src="http://www.grc-india.com/smart-cities/assets/user.png">\n        </ion-thumbnail>\n         <h2>Formularios</h2>\n      </ion-item>\n      ...\n    </ion-list>\n    \n    <ion-list *ngSwitchCase="\'kittens\'">\n      <ion-item>\n        <ion-thumbnail item-start>\n          <img src="http://www.grc-india.com/smart-cities/assets/user.png">\n        </ion-thumbnail>\n        <h2>Lista</h2>\n      </ion-item>\n      ...\n    </ion-list>\n    \n  </div>\n  -->'/*ion-inline-end:"/var/www/html/vecino_conectado/src/pages/home/home.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
 ], HomePage);
 
-var _a, _b, _c, _d;
 //# sourceMappingURL=home.js.map
 
 /***/ }),
@@ -834,7 +836,7 @@ var MyApp = (function () {
 MyApp = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"/var/www/html/vecino_conectado/src/app/app.html"*/'<!--  <ion-menu [content]="content">\n 	\n<ion-content padding>\n	\n<h4> esto es el menu</h4>\n\n</ion-content>\n\n </ion-menu>\n -->\n <!-- <ion-nav [root]="rootPage" #content></ion-nav> --> \n <ion-nav [root]="rootPage"></ion-nav> '/*ion-inline-end:"/var/www/html/vecino_conectado/src/app/app.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_android_full_screen__["a" /* AndroidFullScreen */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */], __WEBPACK_IMPORTED_MODULE_4__ionic_native_android_full_screen__["a" /* AndroidFullScreen */]])
 ], MyApp);
 
 //# sourceMappingURL=app.component.js.map

@@ -5,7 +5,8 @@ import { AndroidFullScreen } from '@ionic-native/android-full-screen';
 import { 
 	AlertController, 
 	LoadingController,
-	NavController
+	NavController,
+	NavParams
 } from 'ionic-angular';
 import { Http, Headers, RequestOptions } from '@angular/http';
 
@@ -26,36 +27,27 @@ export class HomePage {
 		public loadingCtrl: LoadingController,
 		public navCtrl: NavController,
 		private http: Http,
+		private navParams: NavParams,
   	) {}
 
 	ngOnInit(){ 
-		this.get_from_layout();		
-
-
-
-
+		this.get_from_layout();
 	}
-
-
 	get_from_layout = ():void=>{
+
+		//console.log();
+
 		var url = 'http://local.solnetjson/rest/api/all/usuarios';
 		this.http.get(url)
 		.do(res => res.json()).
 		subscribe(data => {
+			console.log(data);
 			//console.log(JSON.parse(data._body));
-			this.users = JSON.parse(data._body).data;
-
+			//this.users = JSON.parse(data._body).data;
 		});
-		
-
 	};
-
 	all_from_layout = ():void=>{
 
-
-
 	};
-
-
 
 }
