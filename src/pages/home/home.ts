@@ -37,14 +37,28 @@ export class HomePage {
 
 		//console.log();
 
-		var url = 'http://local.solnetjson/rest/api/all/usuarios';
+
+
+
+		var url = 'http://solnetjson.grown.cl/rest/api/all/usuarios';
+
+		this.http.get(url)
+		.map(res => res.json())
+		.subscribe(result => {
+			//console.log(result.json_result.data);
+			//console.log(JSON.parse(data._body));
+			this.users = result.json_result.data;
+		});
+
+
+		/*
 		this.http.get(url)
 		.do(res => res.json()).
 		subscribe(data => {
 			console.log(data);
-			//console.log(JSON.parse(data._body));
-			//this.users = JSON.parse(data._body).data;
+
 		});
+		*/
 	};
 	all_from_layout = ():void=>{
 

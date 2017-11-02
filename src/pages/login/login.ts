@@ -26,7 +26,7 @@ export class LoginPage{
 	data = new Array<Object>();
 	usernameOk = false;
 	passwordOk = false;
-	url_base = 'http://local.solnetjson/';
+	url_base = 'http://solnetjson.grown.cl/';
 	headers = new Headers({'Content-Type': 'application/json'});
 	options = new RequestOptions({ headers: this.headers });
 	alerts = {
@@ -43,7 +43,7 @@ export class LoginPage{
 	};
 	
 	constructor(
-		private alertCtrl: AlertController, 
+		public alertCtrl: AlertController, 
 		public loadingCtrl: LoadingController,
 		public navCtrl: NavController,
 		private http: Http,
@@ -56,39 +56,43 @@ export class LoginPage{
 		var q = {"query":[{"Us_Usuario":`=${u}`,"Us_pass":`=${p}`}]}; 
 		var b = { 'layout':l, 'query':q };
 		var url_login = `${this.url_base}/rest/api/find`;
-		var loading = this.loaders.loading;
 
+
+		let alert_error = this.alertCtrl.create({
+			title:'Error!',
+			subTitle:'Usuario y/o contraseña invalida',
+         buttons: [
+           {
+             text: "Aceptar", handler: () => {
+               alert_error.dismiss(); 
+               return false;
+             }
+           }]
+       });
+       
+
+
+		//this.loaders.loading.present();
+		//this.loaders.loading.dismiss();
 		//Validacion usuario
 		if ( (u&&u!=null&&u!='')&&(p&&p!=null&&p!='')&&(l&&l!=null&&l!='')) {
-			loading.present().then(()=>{
-				this.http.post(url_login, this.options, {'body':b}).map(response => response.json())
-					.subscribe(
-			  			response => {
-			  				var ec = response.errorCode;
-			  				switch (ec) {
-			  					case '0':
-			  						//this.loaders.loading = null;
-									this.navCtrl.push(HomePage, {data:{'user':u} });
-				  					break;
-			  					case '401':
-				  				default:
-									//console.log(ec); //this.loaders.loading = null;
-									this.loaders.error.present();
-									setTimeout(()=>{
-										this.loaders.error.dismiss();
-										//this.navCtrl.push(LoginPage);
-										window.location.reload(true);
-									}, 2500);
-				  					break;
+			var error_login = this.alerts.error_login;
+			
+			this.http.post(url_login, this.options, {'body':b})
+				.map(response => response.json())
+				.subscribe(
+		  			response => {
 
-				  			}
-				  			loading.dismiss();
-				  		},
-						() => {/*console.log('Authentication Complete')*/}
-					);
-			});
-		}else{
-			//Redireccionar al login y quitar alerta
+		  				var ec = response.errorCode;
+		  				if (ec == '0') {
+							this.navCtrl.push(HomePage, {data:{'user':u} });
+		  				}else if(ec == '401'){
+		  					alert_error.present();
+		  					//error_login.present();
+		  				}
+			  		},
+					() => {/*console.log('Authentication Complete')*/}
+				);
 		}
 	};
 

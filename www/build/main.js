@@ -43,7 +43,7 @@ var LoginPage = (function () {
         this.data = new Array();
         this.usernameOk = false;
         this.passwordOk = false;
-        this.url_base = 'http://local.solnetjson/';
+        this.url_base = 'http://solnetjson.grown.cl/';
         this.headers = new __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
         this.options = new __WEBPACK_IMPORTED_MODULE_3__angular_http__["d" /* RequestOptions */]({ headers: this.headers });
         this.alerts = {
@@ -65,35 +65,35 @@ var LoginPage = (function () {
             var q = { "query": [{ "Us_Usuario": "=" + u, "Us_pass": "=" + p }] };
             var b = { 'layout': l, 'query': q };
             var url_login = _this.url_base + "/rest/api/find";
-            var loading = _this.loaders.loading;
+            var alert_error = _this.alertCtrl.create({
+                title: 'Error!',
+                subTitle: 'Usuario y/o contraseña invalida',
+                buttons: [
+                    {
+                        text: "Aceptar", handler: function () {
+                            alert_error.dismiss();
+                            return false;
+                        }
+                    }
+                ]
+            });
+            //this.loaders.loading.present();
+            //this.loaders.loading.dismiss();
             //Validacion usuario
             if ((u && u != null && u != '') && (p && p != null && p != '') && (l && l != null && l != '')) {
-                loading.present().then(function () {
-                    _this.http.post(url_login, _this.options, { 'body': b }).map(function (response) { return response.json(); })
-                        .subscribe(function (response) {
-                        var ec = response.errorCode;
-                        switch (ec) {
-                            case '0':
-                                //this.loaders.loading = null;
-                                _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_1__home_home__["a" /* HomePage */], { data: { 'user': u } });
-                                break;
-                            case '401':
-                            default:
-                                //console.log(ec); //this.loaders.loading = null;
-                                _this.loaders.error.present();
-                                setTimeout(function () {
-                                    _this.loaders.error.dismiss();
-                                    //this.navCtrl.push(LoginPage);
-                                    window.location.reload(true);
-                                }, 2500);
-                                break;
-                        }
-                        loading.dismiss();
-                    }, function () { });
-                });
-            }
-            else {
-                //Redireccionar al login y quitar alerta
+                var error_login = _this.alerts.error_login;
+                _this.http.post(url_login, _this.options, { 'body': b })
+                    .map(function (response) { return response.json(); })
+                    .subscribe(function (response) {
+                    var ec = response.errorCode;
+                    if (ec == '0') {
+                        _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_1__home_home__["a" /* HomePage */], { data: { 'user': u } });
+                    }
+                    else if (ec == '401') {
+                        alert_error.present();
+                        //error_login.present();
+                    }
+                }, function () { });
             }
         };
         this.signIn = function () { alert("signIn"); };
@@ -252,14 +252,22 @@ var HomePage = (function () {
         this.users = [];
         this.get_from_layout = function () {
             //console.log();
-            var url = 'http://local.solnetjson/rest/api/all/usuarios';
+            var url = 'http://solnetjson.grown.cl/rest/api/all/usuarios';
             _this.http.get(url)
-                .do(function (res) { return res.json(); }).
-                subscribe(function (data) {
-                console.log(data);
+                .map(function (res) { return res.json(); })
+                .subscribe(function (result) {
+                //console.log(result.json_result.data);
                 //console.log(JSON.parse(data._body));
-                //this.users = JSON.parse(data._body).data;
+                _this.users = result.json_result.data;
             });
+            /*
+            this.http.get(url)
+            .do(res => res.json()).
+            subscribe(data => {
+                console.log(data);
+    
+            });
+            */
         };
         this.all_from_layout = function () {
         };
