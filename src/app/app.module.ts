@@ -9,9 +9,12 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { MenuPage } from '../pages/menu/menu';
+import { MapaPage } from '../pages/mapa/mapa';
+import { EncuestaPage } from '../pages/encuesta/encuesta';
+import { ReclamoPage } from '../pages/reclamo/reclamo';
 
 import { AdmindashPage } from '../pages/admindash/admindash';
-import { AdminPage } from '../pages/admin/admin';
+import { InicioPage } from '../pages/inicio/inicio';
 import { AdminviewmanagementPage } from '../pages/adminviewmanagement/adminviewmanagement';
 import { AdminviewhodsPage } from '../pages/adminviewhods/adminviewhods';
 import { AdminviewstaffsPage } from '../pages/adminviewstaffs/adminviewstaffs';
@@ -22,6 +25,8 @@ import { AdminviewparentsPage } from '../pages/adminviewparents/adminviewparents
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AndroidFullScreen } from '@ionic-native/android-full-screen';
+import { GoogleMaps } from '@ionic-native/google-maps';
+import { Geolocation } from '@ionic-native/geolocation';
 
 import { HttpModule } from '@angular/http';
 
@@ -39,8 +44,11 @@ var links = [
     TabsPage,
     LoginPage,
     MenuPage,
+    MapaPage,
     AdmindashPage,
-    AdminPage,
+    InicioPage,
+    EncuestaPage,
+    ReclamoPage,
     AdminviewmanagementPage,
     AdminviewhodsPage,
     AdminviewstaffsPage,
@@ -60,8 +68,11 @@ var links = [
     TabsPage,
     LoginPage,
     MenuPage,
+    MapaPage,
+    EncuestaPage,
     AdmindashPage,
-    AdminPage,
+    InicioPage,
+    ReclamoPage,
     AdminviewmanagementPage,
     AdminviewhodsPage,
     AdminviewstaffsPage,
@@ -72,6 +83,8 @@ var links = [
     StatusBar,
     SplashScreen,
     AndroidFullScreen,
+    GoogleMaps,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

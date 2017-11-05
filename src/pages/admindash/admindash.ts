@@ -5,7 +5,8 @@ import { AdminviewhodsPage } from '../adminviewhods/adminviewhods';
 import { AdminviewstaffsPage } from '../adminviewstaffs/adminviewstaffs';
 import { AdminviewstudentsPage } from '../adminviewstudents/adminviewstudents';
 import { AdminviewparentsPage } from '../adminviewparents/adminviewparents';
-import { AdminPage } from '../admin/admin';
+import { InicioPage } from '../inicio/inicio';
+import { LoginPage } from '../login/login';
 
 /*
   Generated class for the Admindash page.
@@ -18,18 +19,30 @@ import { AdminPage } from '../admin/admin';
 })
 export class AdmindashPage {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = AdminPage;
+  rootPage: any = InicioPage;
   pages: Array<{title: string, component: any, icon: any}>;
 
   constructor(public navCtrl: NavController) {
 
+    // this.pages = [
+    //   { title: 'Home', component: InicioPage, icon:'home' },
+    //   { title: 'Management', component: AdminviewmanagementPage, icon:'compass' },
+    //   { title: 'HOD', component: AdminviewhodsPage, icon:'person' },
+    //   { title: 'Staffs', component: AdminviewstaffsPage, icon:'contact' },
+    //   { title: 'Students', component: AdminviewstudentsPage, icon:'people' },
+    //   { title: 'Parents', component: AdminviewparentsPage, icon:'appstore' }
+    // ];
+
     this.pages = [
-      { title: 'Home', component: AdminPage, icon:'home' },
-      { title: 'Management', component: AdminviewmanagementPage, icon:'compass' },
-      { title: 'HOD', component: AdminviewhodsPage, icon:'person' },
-      { title: 'Staffs', component: AdminviewstaffsPage, icon:'contact' },
-      { title: 'Students', component: AdminviewstudentsPage, icon:'people' },
-      { title: 'Parents', component: AdminviewparentsPage, icon:'appstore' }
+      { title: 'Inicio', component: InicioPage, icon:'home' },
+    
+      { title: 'Cuenta', component: AdminviewhodsPage, icon:'contact' },
+      //{ title: 'Convenios', component: AdminviewstaffsPage, icon:'people' },
+      //{ title: 'Municipalidad', component: AdminviewstudentsPage, icon:'book' },
+      { title: 'Configuración', component: AdminviewmanagementPage, icon:'settings' },
+      //{ title: 'Solnet', component: AdminviewparentsPage, icon:'appstore' },
+      { title: 'Cerrar Sesión', component: LoginPage, icon:'log-out' }
+      
     ];
   }
   openPage(page) {

@@ -27806,6 +27806,78 @@ ion-navbar.toolbar {
   min-height: calc(46px + constant(safe-area-inset-top));
 }
 
+page-contact {
+  background: #ffffff;
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, #ffffff), color-stop(21%, #f6f6f6), color-stop(35%, #f6f6f6), color-stop(54%, #f6f6f6), color-stop(100%, #afd0e6));
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), color-stop(21%, #f6f6f6), color-stop(35%, #f6f6f6), color-stop(54%, #f6f6f6), to(#afd0e6));
+  background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 21%, #f6f6f6 35%, #f6f6f6 54%, #afd0e6 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#afd0e6', GradientType=0 );
+}
+
+.card-background-page ion-card {
+  position: relative;
+  text-align: center;
+}
+
+.card-background-page .card-title {
+  position: absolute;
+  top: 36%;
+  font-size: 2.0em;
+  width: 100%;
+  font-weight: bold;
+  color: #fff;
+}
+
+.card-background-page .card-subtitle {
+  font-size: 1.0em;
+  position: absolute;
+  top: 52%;
+  width: 100%;
+  color: #fff;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+
+page-encuesta {
+  background: #ffffff;
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, #ffffff), color-stop(21%, #f6f6f6), color-stop(35%, #f6f6f6), color-stop(54%, #f6f6f6), color-stop(100%, #afd0e6));
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), color-stop(21%, #f6f6f6), color-stop(35%, #f6f6f6), color-stop(54%, #f6f6f6), to(#afd0e6));
+  background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 21%, #f6f6f6 35%, #f6f6f6 54%, #afd0e6 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#afd0e6', GradientType=0 );
+}
+
+.card-background-page ion-card {
+  position: relative;
+  text-align: center;
+}
+
+.card-background-page .card-title {
+  position: absolute;
+  top: 36%;
+  font-size: 2.0em;
+  width: 100%;
+  font-weight: bold;
+  color: #fff;
+}
+
+.card-background-page .card-subtitle {
+  font-size: 1.0em;
+  position: absolute;
+  top: 52%;
+  width: 100%;
+  color: #fff;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+
 .card-background-page ion-card {
   position: relative;
   text-align: center;
@@ -27858,6 +27930,13 @@ img {
   margin: 5%;
 }
 
+/* homescreen background image */
+page-mapa #map {
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+
 page-menu {
   background: #ffffff;
   background: -webkit-gradient(left top, left bottom, color-stop(0%, #ffffff), color-stop(21%, #f6f6f6), color-stop(35%, #f6f6f6), color-stop(54%, #f6f6f6), color-stop(100%, #afd0e6));
@@ -27896,4 +27975,40 @@ h1 {
 
 .item-md ion-icon[item-left] {
   color: orange;
+}
+
+page-encuesta {
+  background: #ffffff;
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, #ffffff), color-stop(21%, #f6f6f6), color-stop(35%, #f6f6f6), color-stop(54%, #f6f6f6), color-stop(100%, #afd0e6));
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), color-stop(21%, #f6f6f6), color-stop(35%, #f6f6f6), color-stop(54%, #f6f6f6), to(#afd0e6));
+  background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 21%, #f6f6f6 35%, #f6f6f6 54%, #afd0e6 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#afd0e6', GradientType=0 );
+}
+
+.card-background-page ion-card {
+  position: relative;
+  text-align: center;
+}
+
+.card-background-page .card-title {
+  position: absolute;
+  top: 36%;
+  font-size: 2.0em;
+  width: 100%;
+  font-weight: bold;
+  color: #fff;
+}
+
+.card-background-page .card-subtitle {
+  font-size: 1.0em;
+  position: absolute;
+  top: 52%;
+  width: 100%;
+  color: #fff;
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+  display: block;
 }

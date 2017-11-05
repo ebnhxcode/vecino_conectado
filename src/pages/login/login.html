@@ -1,35 +1,39 @@
 <!-- <img src="../assets/logo.png"> -->
-
-<img src="http://nunoa.solnet.cl/tarjeta_vecino/images/logo.png">
-<hr />
-<div class="log">
-	<ion-grid>
-		<ion-row>
-			<ion-list col-12>
-				<ion-item>
-				    <ion-label color="primary" stacked></ion-label>
-				    <ion-input [(ngModel)]="user.usuario" type="usuario" placeholder="Usuario"></ion-input>
-				</ion-item>
-			
-		
-			<hr />
-		
-			
-				<ion-item>
-				    <ion-label color="primary" stacked></ion-label>
-				    <ion-input [(ngModel)]="user.password" type="password" placeholder="Contraseña"></ion-input>
-				</ion-item>
-			</ion-list>
-		</ion-row>
-			
-			<button ion-button color="orange" (tap)="login()">INICIAR SESION</button>
-			<button ion-button color="secondary" >REGISTRARSE</button>
-			<button ion-button color="danger" >Olvido su Contraseña?</button>
-			
-	</ion-grid>	
-
-
-
+<!-- <ion-content class="background" scroll="false"> 
+<ion-content class="signup-style" scroll="false">-->
 	
-	<!-- <button ion-button (tap)="signIn()" color="secondary">Registrarse</button> -->
-</div>
+	<!-- <img src="http://nunoa.solnet.cl/tarjeta_vecino/images/logo.png"> -->
+	<img src="./assets/img/logo.png" > 
+	<div class="log">
+		<div class="well">
+			<ion-grid>
+				<ion-row>
+					<ion-list col-12>
+						<ion-item>
+						    <ion-label color="primary" stacked></ion-label>
+						    <ion-input [(ngModel)]="user.usuario" type="usuario" placeholder="Usuario"></ion-input>
+						    
+						</ion-item>
+					
+				
+					<hr />
+				
+					
+						<ion-item>
+						    <ion-label color="primary" stacked></ion-label>
+						    <ion-input [(ngModel)]="user.password" type="password" placeholder="Contraseña"></ion-input>
+						</ion-item>
+					</ion-list>
+				</ion-row>
+					
+					<button ion-button color="orange" (tap)="login()">INICIAR SESION</button>
+					<button ion-button color="secondary" >REGISTRARSE</button>
+					<ion-label>Olvido su Contraseña?...</ion-label>
+					<!-- <button ion-button color="danger" >Olvido su Contraseña?</button> -->
+					
+			</ion-grid>	
+
+			<!-- <button ion-button (tap)="signIn()" color="secondary">Registrarse</button> -->
+		</div>
+	</div>
+<!--</ion-content>-->

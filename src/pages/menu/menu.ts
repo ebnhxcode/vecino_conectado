@@ -25,7 +25,7 @@ import { AdminviewhodsPage } from '../adminviewhods/adminviewhods';
 import { AdminviewstaffsPage } from '../adminviewstaffs/adminviewstaffs';
 import { AdminviewstudentsPage } from '../adminviewstudents/adminviewstudents';
 import { AdminviewparentsPage } from '../adminviewparents/adminviewparents';
-import { AdminPage } from '../admin/admin';
+import { InicioPage } from '../inicio/inicio';
 
 
 
@@ -35,7 +35,7 @@ import { AdminPage } from '../admin/admin';
 })
 export class MenuPage{
 	@ViewChild(Nav) nav: Nav;
-  	rootPage: any = AdminPage;
+  	rootPage: any = InicioPage;
 	pages: Array<{title: string, component: any, icon: any}>;
 
 	constructor(
@@ -46,13 +46,13 @@ export class MenuPage{
 	){
 
 	this.pages = [
-      { title: 'Inicio', component: AdminPage, icon:'home' },
+      { title: 'Inicio', component: InicioPage, icon:'home' },
     
       { title: 'Cuenta', component: AdminviewhodsPage, icon:'contact' },
-      { title: 'Convenios', component: AdminviewstaffsPage, icon:'people' },
-      { title: 'Municipalidad', component: AdminviewstudentsPage, icon:'book' },
+      //{ title: 'Convenios', component: AdminviewstaffsPage, icon:'people' },
+      //{ title: 'Municipalidad', component: AdminviewstudentsPage, icon:'book' },
       { title: 'Configuración', component: AdminviewmanagementPage, icon:'settings' },
-      { title: 'Solnet', component: AdminviewparentsPage, icon:'appstore' },
+      //{ title: 'Solnet', component: AdminviewparentsPage, icon:'appstore' },
       { title: 'Cerrar Sesión', component: LoginPage, icon:'log-out' }
       
     ];

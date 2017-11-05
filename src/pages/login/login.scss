@@ -1,6 +1,4 @@
 page-login{
-	
-
 
 background: #ffffff;
 background: -moz-linear-gradient(top, #ffffff 0%, #f6f6f6 21%, #f6f6f6 35%, #f6f6f6 54%, #afd0e6 100%);
@@ -11,7 +9,7 @@ background: -ms-linear-gradient(top, #ffffff 0%, #f6f6f6 21%, #f6f6f6 35%, #f6f6
 background: linear-gradient(to bottom, #ffffff 0%, #f6f6f6 21%, #f6f6f6 35%, #f6f6f6 54%, #afd0e6 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#afd0e6', GradientType=0 );
 
-}
+ }
 
 
 h1{
@@ -28,9 +26,12 @@ img{
 	margin:5%;	
 }
 
+/* homescreen background image */
 
-// .button{
-// 	background: orange;
+// ion-content.signup-style {
+//     background-image: url('/assets/img/fondo.png');
+//     background-size: cover;
 // }
+
 
 

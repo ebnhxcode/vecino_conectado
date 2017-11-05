@@ -1,17 +1,52 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar>
     <ion-title>
-      Contact
+      Listado Convenios
     </ion-title>
   </ion-navbar>
 </ion-header>
 
+<ion-content class="card-background-page">
+
+  <ion-card>
+    <img src="/assets/img/starbucks.png"/>
+    <div class="card-title">StarBucks</div>
+    <div class="card-subtitle">Promos de la oficina</div>
+  </ion-card>
+
+  <ion-card>
+    <img src="/assets/img/popeye.png"/>
+    <div class="card-title">Popeye</div>
+    <div class="card-subtitle">Lugar de encuentro para Edgar</div>
+  </ion-card>
+
+  <ion-card>
+    <img src="/assets/img/kika.jpg"/>
+    <div class="card-title">El Kika</div>
+    <div class="card-subtitle">Tocomples</div>
+  </ion-card>
+
+</ion-content> -->
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Convenios
+    </ion-title>
+  </ion-navbar>
+</ion-header>  
+
 <ion-content>
+  
   <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
+    <ion-item *ngFor="let item of data">
+
+      <ion-thumbnail item-start>
+          <img src="{{ item.fieldData.Conv_Logo }}">
+          
+      </ion-thumbnail>
+        <h2>{{item.fieldData.Conv_Nombre}}</h2> 
+        <button ion-button clear item-end>View</button>
     </ion-item>
   </ion-list>
-</ion-content>
+
+</ion-content>  
