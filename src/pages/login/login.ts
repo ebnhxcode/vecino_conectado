@@ -26,7 +26,8 @@ export class LoginPage{
 	data = new Array<Object>();
 	usernameOk = false;
 	passwordOk = false;
-	url_base = 'http://solnetjson.grown.cl/';
+	//url_base = 'http://solnetjson.grown.cl/';
+	url_base = 'http://vc.solnet.cl/'
 	headers = new Headers({'Content-Type': 'application/json'});
 	options = new RequestOptions({ headers: this.headers });
 	alerts = {
