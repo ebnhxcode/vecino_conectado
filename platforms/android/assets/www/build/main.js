@@ -43,7 +43,8 @@ var LoginPage = (function () {
         this.data = new Array();
         this.usernameOk = false;
         this.passwordOk = false;
-        this.url_base = 'http://solnetjson.grown.cl/';
+        //url_base = 'http://solnetjson.grown.cl/';
+        this.url_base = 'http://vc.solnet.cl/';
         this.headers = new __WEBPACK_IMPORTED_MODULE_3__angular_http__["a" /* Headers */]({ 'Content-Type': 'application/json' });
         this.options = new __WEBPACK_IMPORTED_MODULE_3__angular_http__["d" /* RequestOptions */]({ headers: this.headers });
         this.alerts = {
@@ -252,7 +253,8 @@ var HomePage = (function () {
         this.users = [];
         this.get_from_layout = function () {
             //console.log();
-            var url = 'http://solnetjson.grown.cl/rest/api/all/usuarios';
+            //var url = 'http://solnetjson.grown.cl/rest/api/all/usuarios';
+            var url = 'http://vc.solnet.cl//rest/api/all/usuarios';
             _this.http.get(url)
                 .map(function (res) { return res.json(); })
                 .subscribe(function (result) {

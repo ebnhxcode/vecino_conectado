@@ -26,8 +26,9 @@ export class LoginPage{
 	data = new Array<Object>();
 	usernameOk = false;
 	passwordOk = false;
-	//url_base = 'http://solnetjson.grown.cl/';
-	url_base = 'http://vc.solnet.cl/'
+	url_base = 'http://local.solnetjson';
+	//url_base = 'http://solnetjson.grown.cl';
+	//url_base = 'http://vc.solnet.cl/'
 	headers = new Headers({'Content-Type': 'application/json'});
 	options = new RequestOptions({ headers: this.headers });
 	alerts = {
@@ -51,6 +52,51 @@ export class LoginPage{
 	){}
 
 	find_in_layout = ():void=>{
+
+		var u = this.user.usuario;
+		var p = this.user.password;
+		var l = this.user.layout;
+
+		//var q = {"query":[{"Us_Usuario":`=${u}`,"Us_pass":`=${p}`}]}; 
+		//var b = { 'layout':l, 'query':q };
+
+		var q = {"data":{"Us_usuario":`=${u}`,"Us_pass":`=${p}`},'layout':{'name':l}}; 
+		var b = { 'layout':l };
+
+		var url_login = `${this.url_base}/rest/api/save`;
+
+
+
+			
+			this.http.post(url_login, q, this.options)
+				.map(response => response.json())
+				.subscribe(
+		  			response => {
+		  				console.log(response);
+			  		},
+					() => {
+					//console.log('Authentication Complete')
+					}
+				);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		return;
+
+		/*
 		var u = this.user.usuario;
 		var p = this.user.password;
 		var l = this.user.layout;
@@ -92,9 +138,12 @@ export class LoginPage{
 		  					//error_login.present();
 		  				}
 			  		},
-					() => {/*console.log('Authentication Complete')*/}
+					() => {
+					//console.log('Authentication Complete')
+					}
 				);
 		}
+		*/
 	};
 
 

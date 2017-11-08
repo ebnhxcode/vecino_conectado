@@ -40,8 +40,9 @@ export class HomePage {
 
 
 
+		var url = 'http://local.solnetjson';
 		//var url = 'http://solnetjson.grown.cl/rest/api/all/usuarios';
-		var url = 'http://vc.solnet.cl//rest/api/all/usuarios';
+		//var url = 'http://vc.solnet.cl/rest/api/all/usuarios';
 
 		this.http.get(url)
 		.map(res => res.json())
