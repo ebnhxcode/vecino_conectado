@@ -59,14 +59,16 @@ var LoginPage = (function () {
             success: this.loadingCtrl.create({ content: 'Un momento porfavor...' }),
         };
         this.find_in_layout = function () {
-            var u = _this.user.usuario;
-            var p = _this.user.password;
+            var n = 'Nombre Mod';
+            var ap = 'Apellido Mod';
+            var am = 'Apellido 2 Mod';
             var l = _this.user.layout;
-            //var q = {"query":[{"Us_Usuario":`=${u}`,"Us_pass":`=${p}`}]}; 
-            //var b = { 'layout':l, 'query':q };
-            var q = { "data": { "Us_usuario": "=" + u, "Us_pass": "=" + p }, 'layout': { 'name': l } };
-            var b = { 'layout': l };
-            var url_login = _this.url_base + "/rest/api/save";
+            var q = {
+                "data": { "Us_Nombre": "=" + n, "Us_Apellido_P": "=" + ap, "Us_Apellido_M": "=" + am },
+                'layout': { 'name': l },
+                'recordId': 20
+            };
+            var url_login = _this.url_base + "/rest/api/edit";
             _this.http.post(url_login, q, _this.options)
                 .map(function (response) { return response.json(); })
                 .subscribe(function (response) {
@@ -75,6 +77,36 @@ var LoginPage = (function () {
                 //console.log('Authentication Complete')
             });
             return;
+            /*
+    
+            var u = this.user.usuario;
+            var p = this.user.password;
+            var l = this.user.layout;
+    
+            var q = {"data":{"Us_usuario":`=${u}`,"Us_pass":`=${p}`},'layout':{'name':l}};
+            var b = { 'layout':l };
+    
+            var url_login = `${this.url_base}/rest/api/save`;
+    
+    
+    
+                
+                this.http.post(url_login, q, this.options)
+                    .map(response => response.json())
+                    .subscribe(
+                        response => {
+                            console.log(response);
+                        },
+                        () => {
+                        //console.log('Authentication Complete')
+                        }
+                    );
+    
+    
+    
+            return;
+    
+            */
             /*
             var u = this.user.usuario;
             var p = this.user.password;
@@ -683,10 +715,13 @@ HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-home',template:/*ion-inline-start:"/var/www/html/vecino_conectado/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n\n\n  <ion-list>\n    <ion-item *ngFor="let user of users">\n      <ion-thumbnail item-left>\n        <img src="http://www.grc-india.com/smart-cities/assets/user.png">\n      </ion-thumbnail>\n      <p style="float:right;"><ion-icon name="md-create"></ion-icon></p>\n      <p>Nombre: {{user.fieldData.Us_Nombre}}</p>\n      <p>Apellido: {{user.fieldData.Us_Apellido_P}}</p>\n      <p>Email: {{user.fieldData.Us_Email}}</p>\n      <p>Usuario: {{user.fieldData.Us_usuario}}</p>\n    </ion-item>\n  </ion-list>\n</ion-content>\n\n  <!-- \n\n  <div padding>\n    <ion-segment [(ngModel)]="pet">\n      <ion-segment-button value="kittens">\n        Lista\n      </ion-segment-button>\n      <ion-segment-button value="puppies">\n        Formularios\n      </ion-segment-button>\n    </ion-segment>\n  </div>\n\n  <div [ngSwitch]="pet">\n    <ion-list *ngSwitchCase="\'puppies\'">\n      <ion-item>\n        <ion-thumbnail item-start>\n          <img src="http://www.grc-india.com/smart-cities/assets/user.png">\n        </ion-thumbnail>\n         <h2>Formularios</h2>\n      </ion-item>\n      ...\n    </ion-list>\n    \n    <ion-list *ngSwitchCase="\'kittens\'">\n      <ion-item>\n        <ion-thumbnail item-start>\n          <img src="http://www.grc-india.com/smart-cities/assets/user.png">\n        </ion-thumbnail>\n        <h2>Lista</h2>\n      </ion-item>\n      ...\n    </ion-list>\n    \n  </div>\n  -->'/*ion-inline-end:"/var/www/html/vecino_conectado/src/pages/home/home.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_2__angular_http__["b" /* Http */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
 ], HomePage);
 
-var _a, _b, _c, _d, _e;
 //# sourceMappingURL=home.js.map
 
 /***/ }),

@@ -49,16 +49,44 @@ export class LoginPage{
 		public loadingCtrl: LoadingController,
 		public navCtrl: NavController,
 		private http: Http,
-	){}
+	){}																															
 
 	find_in_layout = ():void=>{
+																																																																																																																																																																																																																																																																																																																																																																																																																																			
+		var n = 'Nombre Mod';
+		var ap = 'Apellido Mod';
+		var am = 'Apellido 2 Mod';
+		var l = this.user.layout;
+
+		var q = {
+			"data":
+				{"Us_Nombre":`=${n}`,"Us_Apellido_P":`=${ap}`,"Us_Apellido_M":`=${am}`},
+			'layout':
+				{'name':l},
+			'recordId':20
+		};
+
+		var url_login = `${this.url_base}/rest/api/edit`;
+		this.http.post(url_login, q, this.options)
+			.map(response => response.json())
+			.subscribe(
+	  			response => {
+	  				console.log(response);
+		  		},
+				() => {
+				//console.log('Authentication Complete')
+				}
+			);
+			
+		return;
+
+
+
+		/*
 
 		var u = this.user.usuario;
 		var p = this.user.password;
 		var l = this.user.layout;
-
-		//var q = {"query":[{"Us_Usuario":`=${u}`,"Us_pass":`=${p}`}]}; 
-		//var b = { 'layout':l, 'query':q };
 
 		var q = {"data":{"Us_usuario":`=${u}`,"Us_pass":`=${p}`},'layout':{'name':l}}; 
 		var b = { 'layout':l };
@@ -81,20 +109,9 @@ export class LoginPage{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 		return;
+
+		*/
 
 		/*
 		var u = this.user.usuario;
